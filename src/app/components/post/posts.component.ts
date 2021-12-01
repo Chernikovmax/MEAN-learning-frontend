@@ -20,7 +20,7 @@ export class PostsComponent implements OnInit {
     this.postsService.editModeOn(post);
   }
 
-  deletePost(id: number) {
+  deletePost(id: string) {
     this.postsService.deletePost(id);
   }
 

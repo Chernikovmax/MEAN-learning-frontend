@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ReplaySubject} from "rxjs";
-import {AppPost, Post} from "../types";
+import {AppPost, BDPost, Post} from "../types";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +21,21 @@ export class PostsService {
   }
 
   getPosts() {
-    return this.http.get<{ message: string; posts: Post[] }>(`${this.url}/api/posts`)
-      .subscribe((resp) => {
-          this.posts = resp.posts;
+    return this.http.get<{ message: string; data: BDPost[] }>(`${this.url}/api/posts`)
+      .pipe(
+        map(response => {
+          return response.data.map((post) => ({title: post.title, content: post.content, id: post._id})) as Post[];
+        })
+      )
+      .subscribe((posts: Post[]) => {
+          this.posts = posts;
           this.postsLoaded.next(this.posts);
         }
       );
   }
 
   addPost(post: AppPost) {
-    return this.http.post<{ message: string; id: number }>(`${this.url}/api/posts`, post)
+    return this.http.post<{ message: string; id: string }>(`${this.url}/api/posts`, post)
       .subscribe(({id}) => {
         (post as Post).id = id;
         this.posts.push(post as Post);
@@ -41,8 +47,8 @@ export class PostsService {
     this.postsLoaded.next(this.posts);
   }
 
-  deletePost(postId: number) {
-    return this.http.delete<{ message: string }>(`${this.url}/api/posts`, {body: {postId}})
+  deletePost(postId: string) {
+    return this.http.delete<{ message: string }>(`${this.url}/api/posts/${postId}`)
       .subscribe(() => {
         this.posts = this.posts.filter(p => p.id !== postId);
         this.sendPosts();

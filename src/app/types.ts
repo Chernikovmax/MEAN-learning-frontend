@@ -3,11 +3,10 @@ export interface AppPost {
   content: string;
 }
 
-export interface EditPostData {
-  title: string;
-  content: string;
+export interface Post extends AppPost {
+   id: string;
 }
 
-export interface Post extends AppPost {
-   id: number;
+export interface BDPost extends AppPost {
+  _id: string;
 }

@@ -27,13 +27,15 @@
 
 <div class="content" role="main"></div>
 
-<app-post-creation>
-</app-post-creation>
+<!--<app-post-creation>-->
+<!--</app-post-creation>-->
 
-<app-posts
-  [posts]="posts"
->
-</app-posts>
-
+<!--<app-posts-->
+<!--  [posts]="posts"-->
+<!--&gt;-->
+<!--</app-posts>-->
+<div class="email-container">
+  <email-recipients class="email-recipients" (formSubmit)="onFormSubmit($event)"></email-recipients>
+</div>
 
 <router-outlet></router-outlet>

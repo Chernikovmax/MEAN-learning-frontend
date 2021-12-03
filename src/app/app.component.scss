@@ -262,6 +262,19 @@ svg#clouds {
   width: 1920px;
 }
 
+.email-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  .email-recipients {
+    width: 900px;
+    height: 600px;
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 16%);
+    border-radius: 8px;
+    padding: 20px;
+  }
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
   .card-container > *:not(.circle-link),

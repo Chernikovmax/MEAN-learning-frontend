@@ -1,0 +1,127 @@
+<div
+  *ngIf="recipientsFormControl?.value?.length"
+  class="er__recipients"
+>
+  <chip
+    *ngFor="let emailAddress of recipientsFormControl.value"
+    [tooltip]="emailAddress"
+    [removable]="true"
+    (removed)="removeEmail(emailAddress)"
+    class="er__recipients__chip"
+  >
+    {{emailAddress}}
+  </chip>
+  <button
+    (click)="clearControl(Controls.RECIPIENTS)"
+    mat-button
+    mat-icon-button
+    class="er__recipients__reset-btn"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="er__email-input">
+    <mat-label>Электронный адрес</mat-label>
+    <input
+      [errorStateMatcher]="emailMatcher"
+      [formControl]="emailFormControl"
+      (keydown.enter)="addEmail()"
+      maxlength="254"
+      matInput
+      type="email"
+    >
+    <button
+      *ngIf="emailFormControl?.value?.length"
+      (click)="clearControl(Controls.EMAIL)"
+      mat-button
+      matSuffix
+      mat-icon-button
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <button
+      *ngIf="emailFormControl?.value?.length && emailFormControl.valid"
+      (click)="addEmail()"
+      mat-button
+      matSuffix
+      mat-icon-button
+    >
+      <mat-icon class="er__add-email-icon">person_add_alt</mat-icon>
+    </button>
+    <mat-hint>
+      {{emailFormControl.value?.length || 0}} из {{254}}
+    </mat-hint>
+    <mat-error
+      *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')"
+    >
+      Некорректный эмейл
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="er__field">
+    <mat-label>Тема письма</mat-label>
+    <input
+      [errorStateMatcher]="themeMatcher"
+      [formControl]="themeFormControl"
+      maxlength="50"
+      matInput
+      type="text"
+    >
+    <button
+      *ngIf="themeFormControl?.value?.length"
+      (click)="clearControl(Controls.THEME)"
+      mat-button
+      matSuffix
+      mat-icon-button
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint>
+      {{themeFormControl.value?.length || 0}} из {{50}}
+    </mat-hint>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="er__field">
+    <mat-label>Содержание письма</mat-label>
+    <textarea
+      [formControl]="contentFormControl"
+      [maxLength]="3000"
+      matInput
+      type="text"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="20"
+    >
+    </textarea>
+    <button
+      *ngIf="contentFormControl?.value?.length"
+      (click)="clearControl(Controls.CONTENT)"
+      mat-button
+      matSuffix
+      mat-icon-button
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint>
+      {{contentFormControl.value?.length || 0}} из {{3000}}
+    </mat-hint>
+  </mat-form-field>
+
+  <button
+    mat-flat-button
+    color="accent"
+    type="submit"
+    class="er__submit-btn"
+    [disabled]="!form.valid"
+  >
+    <mat-icon>open_in_new</mat-icon>
+    Отправить
+  </button>
+</form>

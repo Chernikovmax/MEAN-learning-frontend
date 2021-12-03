@@ -13,13 +13,18 @@ import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {EmailRecipientsComponent} from "./components/email-recipients/email-recipients.component";
+import {ChipComponent} from "./components/chip/chip.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
     PostCreationComponent,
+    EmailRecipientsComponent,
+    ChipComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,8 @@ import {FormsModule} from "@angular/forms";
     MatIconModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

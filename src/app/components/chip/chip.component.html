@@ -1,0 +1,11 @@
+<span class="awp-chip__text" [matTooltip]="tooltip">
+        <ng-content></ng-content>
+</span>
+<button
+    *ngIf="removable"
+    mat-icon-button
+    class="awp-chip__remove__btn"
+    (click)="notifyRemove()"
+>
+    <mat-icon class="awp-chip__remove__btn-icon">cancel</mat-icon>
+</button>

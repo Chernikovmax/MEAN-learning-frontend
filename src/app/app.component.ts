@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsService} from "./services/posts.service";
 import {Post} from "./types";
+import {FormValue} from "./components/email-recipients/types";
 
 @Component({
   selector: 'app-root',
@@ -18,5 +19,9 @@ export class AppComponent implements OnInit {
     this.postsService.postsLoaded.subscribe((posts) => {
       this.posts = posts;
     });
+  }
+
+  onFormSubmit(emailForm: FormValue) {
+
   }
 }

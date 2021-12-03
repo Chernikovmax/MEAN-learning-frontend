@@ -1,0 +1,48 @@
+:host {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  color: #ccc;
+  font-size: 14px;
+  font-weight: bolder;
+  padding: 0 8px 0 12px;
+  border-radius: 16px;
+  cursor: default;
+  min-height: 32px;
+  height: 32px;
+}
+
+.awp-chip__text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  margin-bottom: 3px;
+}
+
+::ng-deep.awp-chip__remove__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+
+  & > .mat-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+
+    .awp-chip__remove__btn-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+}

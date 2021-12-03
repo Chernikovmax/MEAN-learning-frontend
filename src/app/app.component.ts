@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PostsService} from "./services/posts.service";
 import {Post} from "./types";
 import {FormValue} from "./components/email-recipients/types";
+import {EmailService} from "./services/email.service";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   posts: Post[] = [];
 
-  constructor(private postsService: PostsService) {
+  constructor(private postsService: PostsService, private emailService: EmailService) {
   }
 
   ngOnInit() {
@@ -22,6 +23,6 @@ export class AppComponent implements OnInit {
   }
 
   onFormSubmit(emailForm: FormValue) {
-
+    this.emailService.sendEmail(emailForm);
   }
 }

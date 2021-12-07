@@ -266,13 +266,20 @@ svg#clouds {
   display: flex;
   width: 100%;
   justify-content: center;
-  .email-recipients {
+
+  .email__content {
     width: 900px;
-    height: 600px;
+    min-height: 400px;
+    max-height: calc(100% - 40px);
     box-shadow: 0 0 3px 0 rgb(0 0 0 / 16%);
     border-radius: 8px;
     padding: 20px;
+    overflow-y: auto;
   }
+}
+
+.er__recipients-wrapper {
+  margin-top: 16px;
 }
 
 /* Responsive Styles */

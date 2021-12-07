@@ -35,7 +35,19 @@
 <!--&gt;-->
 <!--</app-posts>-->
 <div class="email-container">
-  <email-recipients class="email-recipients" (formSubmit)="onFormSubmit($event)"></email-recipients>
+  <div class="email__content">
+    <h2>Создание записи эмейла</h2>
+    <email-recipients (formSubmit)="onFormSubmit($event)"></email-recipients>
+
+    <ng-container *ngIf="emailSchedules?.length">
+      <h2>Все записи в коллекции эмейлов</h2>
+      <email-schedules
+        [schedules]="emailSchedules"
+        (scheduleDelete)="onScheduleDelete($event)"
+        class="er__recipients-wrapper"
+      ></email-schedules>
+    </ng-container>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

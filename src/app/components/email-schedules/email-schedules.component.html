@@ -1,0 +1,32 @@
+<mat-accordion class="email-schedule">
+  <mat-expansion-panel
+    *ngFor="let schedule of schedules"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{schedule.id}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{schedule.theme}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <h3>Адрессаты</h3>
+    <div
+      *ngIf="schedule.recipients?.length"
+      class="er__recipients"
+    >
+      <chip
+        *ngFor="let emailAddress of schedule.recipients"
+        [tooltip]="emailAddress"
+        class="er__recipients__chip"
+      >
+        {{emailAddress}}
+      </chip>
+    </div>
+    <p>{{schedule.content}}</p>
+    <mat-action-row>
+<!--      <button mat-button color="primary" (click)="nextStep()">Next</button>-->
+      <button mat-button color="warn" (click)="deleteSchedule(schedule)">Удалить запись</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
